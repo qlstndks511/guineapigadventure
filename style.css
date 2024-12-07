@@ -1,69 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
-body
-{
+
+body{
+    background: #f9f9f9;
     min-height: 100vh;
-    background: linear-gradient(#2b1055,#7597de);
     overflow-x: hidden;
+    height: 170vh;
 }
-header
-{
+header{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     padding: 30px 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    z-index: 10000;
+    z-index: 100;
 }
-header .logo {
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
+.logo{
     font-size: 2em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-header ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header ul li {
-    list-style: none;
-    margin-left: 20px;
-}
-
-header ul li a {
+    color: #359381;
+    margin-right: 270px;
     text-decoration: none;
+    font-weight: 700;
+}
+.navigation a {
+    text-decoration: none;
+    color: #359381;
     padding: 6px 15px;
-    color: #fff;
     border-radius: 20px;
-    position: relative; /* Ensure pseudo-element is positioned relative to the link */
-    overflow: hidden; /* Prevent overflow of the background */
+    margin: 0 10px;
+    font-weight: 600;
+    position: relative; /* Ensure the pseudo-element positions correctly */
+    overflow: hidden; /* Prevent the background from overflowing */
     z-index: 1; /* Keep text above the pseudo-element */
-    transition: color 0.3s ease; /* Smooth text color transition */
+    transition: color 0.3s ease;
 }
 
-header ul li a::before {
+.navigation a::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #359381;
     border-radius: 20px;
     z-index: -1; /* Position behind the text */
     transform: scale(0);
@@ -71,67 +60,51 @@ header ul li a::before {
     opacity: 0;
 }
 
-header ul li a:hover,
-header ul li a.active {
-    color: #2b1055;
+.navigation a:hover,
+.navigation a.active {
+    color: #fff;
 }
 
-header ul li a:hover::before,
-header ul li a.active::before {
+.navigation a:hover::before,
+.navigation a.active::before {
     transform: scale(1);
     opacity: 1;
 }
 
-section{
+.parallax{
     position: relative;
-    width: 100%;
-    height: 100vh;
-    padding: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
-section img{
+#text{
+    position: absolute;
+    font-size: 5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+.parallax img{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
     pointer-events: none;
+    z-index: -1;
 }
-section img#moon{
-    mix-blend-mode: screen;
-}
-section img#mountains_front
-{
-    z-index: 10;
-}
-#text
-{
+#textSmall {
     position: absolute;
+    font-size: 2em;
     color: #fff;
-    white-space: nowrap;
-    font-size: 5vw;
-    z-index: 9;
-    margin-left: 500px;
-}
-#btn
-{
-    text-decoration: none;
-    padding: 8px 30px;
-    border-radius: 40px;
-    background: #fff;
-    color: #2b1055;
-    font-size: 1.5em;
-    z-index: 9;
-    transform: translateY(100px)
+    top: 50%;
+    transform: translateY(100%); /* Moves it below #text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
 }
 .sec{
     position: relative;
     padding: 100px;
-    background: #1c0522;
+    background: #003329;
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -151,39 +124,15 @@ section img#mountains_front
     color: #fff;
     text-align: center;
 }
-#chunky, #helmet {
-    animation: float 3s ease-in-out infinite; /* Shared animation */
-    cursor: grab;
+
+#chunky {
+    position: absolute;
+    bottom: 0px; /* Adjust closer to the bottom if necessary */
+    right: 10px;  /* Adjust closer to the edge if necessary */
+    width: 200px; /* Size remains the same */
+    transform: rotate(310deg);
 }
 
-#chunky{
-    left: 10vw;
-    top: 50%;
-    transform: translate(-50%);
-    position: absolute;
-    z-index: 10001;
-    width: 10vw;
-    height: auto;
-    display: flex;
+#lasthill{
+    z-index: 2;
 }
-#helmet{
-    left: 10vw;
-    top: calc(50%);
-    transform: translateY(-50%,-50%);
-    position: absolute;
-    z-index: 999990;
-    display: flex;
-    width: 12vw;
-    height: auto;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-#chunky.wearing-helmet #helmet {
-    position: absolute; /* Ensure helmet stays positioned relative to Chunky */
-    top: 0; /* Adjust this based on Chunky’s dimensions */
-    left: 0; /* Adjust for alignment */
-    animation: inherit; /* Helmet inherits Chunky's animation */
